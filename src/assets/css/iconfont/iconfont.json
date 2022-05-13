@@ -1,0 +1,51 @@
+{
+  "id": "3274516",
+  "name": "其他",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "28475810",
+      "name": "resources.list",
+      "font_class": "menu",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "28475843",
+      "name": "root.list",
+      "font_class": "list",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "28475852",
+      "name": "switch",
+      "font_class": "switch",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "28475856",
+      "name": "小组",
+      "font_class": "user",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "28475864",
+      "name": "1.Bace基础-3.Icon图标-其他-control.platform",
+      "font_class": "fangkuai",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "28475889",
+      "name": "dashboard",
+      "font_class": "clock",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    }
+  ]
+}
