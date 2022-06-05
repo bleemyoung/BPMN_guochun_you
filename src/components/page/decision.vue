@@ -1,229 +1,30 @@
 <template>
   <div class="flex box">
-    <div style="padding-right: 30px; position: relative">
+    <div style="padding-right: 30px; position: relative;width: 300px">
       <list></list>
       <div class="btns">
         <el-button style="width: 100%">新建农事决策</el-button>
       </div>
     </div>
-    <div class="flex-1 img" style="text-align: center">
-      <img
-        src="@/assets/img/decision.jpg"
-        style="width: 90%; margin-top: 30px"
-        alt=""
-      />
-    </div>
-    <div style="" class="right">
-      <div class="title">决策分支 02</div>
 
-      <el-button style="width: 100%; margin-bottom: 15px"
-        >添加判定条件</el-button
-      >
-
-      <div class="right-box">
-        <div class="flex">
-          <span class="flex-1 margin-bottom-10">当</span>
-          <span>优先级1</span>
-        </div>
-        <el-select
-          class="margin-bottom-10"
-          style="width: 100%"
-          v-model="value"
-          placeholder="轮播种数"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <div class="flex margin-bottom-10">
-          <div style="margin-right: 10px; width: 100px">
-            <el-select v-model="value" placeholder="大于">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-          <div class="flex-1">
-            <el-select v-model="value" placeholder="500">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-        <div class="margin-bottom-10">且</div>
-
-        <el-select
-          class="margin-bottom-10"
-          style="width: 100%"
-          v-model="value"
-          placeholder="轮播种数"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <div class="flex margin-bottom-10">
-          <div style="margin-right: 10px; width: 100px">
-            <el-select v-model="value" placeholder="大于">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-          <div class="flex-1">
-            <el-select v-model="value" placeholder="500">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-
-        <el-button style="width: 100%">添加子条件</el-button>
-      </div>
-
-      <div class="title">或</div>
-
-      <div class="right-box">
-        <div class="flex">
-          <span class="flex-1 margin-bottom-10">当</span>
-          <span>优先级1</span>
-        </div>
-        <el-select
-          class="margin-bottom-10"
-          style="width: 100%"
-          v-model="value"
-          placeholder="轮播种数"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <div class="flex margin-bottom-10">
-          <div style="margin-right: 10px; width: 100px">
-            <el-select v-model="value" placeholder="大于">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-          <div class="flex-1">
-            <el-select v-model="value" placeholder="500">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-        <div class="margin-bottom-10">且</div>
-
-        <el-select
-          class="margin-bottom-10"
-          style="width: 100%"
-          v-model="value"
-          placeholder="轮播种数"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <div class="flex margin-bottom-10">
-          <div style="margin-right: 10px; width: 100px">
-            <el-select v-model="value" placeholder="大于">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-          <div class="flex-1">
-            <el-select v-model="value" placeholder="500">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled"
-              >
-              </el-option>
-            </el-select>
-          </div>
-        </div>
-
-        <el-button style="width: 100%">添加子条件</el-button>
-      </div>
-    </div>
+    <DMN></DMN>
   </div>
 </template>
-
 <script>
+import DMN from "@/components/DMN";
 import list from "@/components/list";
 
 export default {
   name: "Home",
-  components: { list },
+  components: {list, DMN},
   data() {
     return {
       options: [],
     };
   },
   methods: {},
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 
@@ -240,9 +41,11 @@ export default {
   width: calc(100% - 30px);
   bottom: 20px;
 }
+
 .flex {
   display: flex;
 }
+
 .flex-1 {
   flex: 1;
 }
@@ -279,6 +82,7 @@ export default {
   font-weight: normal;
   color: rgba(0, 0, 0, 0.6);
 }
+
 .margin-bottom-10 {
   margin-bottom: 10px;
 }
