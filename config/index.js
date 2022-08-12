@@ -14,7 +14,7 @@ module.exports = {
 
             '/apis': {
 
-// 测试环境
+                // 测试环境
 
                 target: 'http://119.45.103.23:8081/', // 接口域名
 
@@ -32,7 +32,7 @@ module.exports = {
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST - 192.168.66.204
-        port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        port: 8087, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,
         notifyOnErrors: true,

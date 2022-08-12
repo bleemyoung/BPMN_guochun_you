@@ -33,22 +33,35 @@
       />
     </div>
     <div>
-      <el-row>
-        <el-button type="primary">主要按钮</el-button>
-      </el-row>
+      
+    </div>
+
+    <div>
       <el-upload
-  class="upload-demo"
-  action="https://jsonplaceholder.typicode.com/posts/"
-  :on-preview="handlePreview"
-  :on-remove="handleRemove"
-  :before-remove="beforeRemove"
-  multiple
-  :limit="3"
-  :on-exceed="handleExceed"
-  :file-list="fileList">
-  <el-button size="small" type="primary">点击上传</el-button>
-  
-</el-upload>
+        class="upload-demo"
+        ref="upload"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :on-preview="handlePreview"
+        :on-remove="handleRemove"
+        :before-remove="beforeRemove"
+        :file-list="fileList"
+        :auto-upload="false"
+        accept=".xml"
+      >
+        <el-button slot="trigger" size="small" type="primary"
+          >选取文件</el-button
+        >
+        <el-button
+          style="margin-left: 10px"
+          size="small"
+          type="success"
+          @click="submitUpload"
+          >上传到服务器</el-button
+        >
+        <!-- <el-button type="info"
+        @click="handleClear"
+        >清空文件列表</el-button> -->
+      </el-upload>
     </div>
   </div>
 </template>
@@ -65,8 +78,15 @@ export default {
   },
   data() {
     return {
+      test:"",
       xml: "",
       isShow: true,
+      fileList: [
+        {
+          name: "apply-request.bpmn20.xml",
+          url: "static\testXmlapply-request.bpmn20.xml",
+        },
+      ],
       users: [
         { name: "The Beatles", id: "1" },
         { name: "The Rolling Stones", id: "2" },
@@ -84,16 +104,51 @@ export default {
     };
   },
   methods: {
+    
+    // 上传xml/
+    submitUpload() {
+      // 
+      console.log("call submitUpload()");
+      this.$refs.upload.submit();//
+    },
+    handleRemove(file, fileList) {
+       console.log("handleRemove")
+      console.log(file, fileList);
+      
+    },
+    beforeRemove(file, fileList){
+       console.log("beforeRemove")
+      return this.$confirm(`确定移除 ${ file.name }？`);
+    },
+    handlePreview(file) {
+      // const reader=new FileReader()
+      // reader.fileAsText(file)
+
+      // console.log(reader)
+      console.log(file.name);
+     
+      //  console.log(file);
+    },
+    // 清空文件列表
+    handleClear(){
+      console.log("clear files")
+// TODOs
+    }, 
     // 对应保存模型
+
     save() {
       // { process: {...}, xml: '...', svg: '...' }
+    
       var axios = require("axios");
-      var config = {
+      
+       var config = {
         method: "post",
         url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
       };
       console.log("123yxh，save");
+      //  console.log(api);
       console.log(config);
+      // console.log("show xml:"+this.xml);
 
       axios(config)
         .then(function (response) {
@@ -173,14 +228,15 @@ export default {
         method: "get",
         url: "/apis/xml/getXmlFile?pName=apply-request",
       };
-      //  console.log("123yxh");
+       console.log("123yxh");
       console.log(this.xml);
 
       axios(config)
         .then(function (response) {
           // console.log(JSON.stringify(response.data));
           res = response.data.data;
-          console.log(res);
+          // console.log(res);
+          // console.log(response.data)
           that.xml = res;
         })
         .catch(function (error) {

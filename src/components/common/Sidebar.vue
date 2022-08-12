@@ -14,7 +14,7 @@
       >
         <template v-for="item in items">
           <template v-if="item.subItems">
-            <el-submenu :index="item.path">
+            <el-submenu :index="item.path" :key="item.label">
               <template slot="title">
                 <i :class="item.icon"></i>
                 <span slot="title">{{ item.title }}</span>
@@ -32,7 +32,8 @@
           <template v-else>
             <template v-if="item.title == '小组管理'">
               <el-menu-item
-                :index="item.path"
+                :index="item.path" 
+                :key="item.label"
                 style="position: absolute; bottom: 105px; width: 100%"
               >
                 <i :class="item.icon"></i>
@@ -42,6 +43,7 @@
             <template v-else-if="item.title == '个人中心'">
               <el-menu-item
                 :index="item.path"
+                :key="item.label"
                 style="position: absolute; bottom: 50px; width: 100%"
               >
                 <i :class="item.icon"></i>
@@ -49,7 +51,8 @@
               </el-menu-item>
             </template>
             <template v-else>
-              <el-menu-item :index="item.path">
+              <el-menu-item :index="item.path"
+              :key="item.label">
                 <i :class="item.icon"></i>
                 <span slot="title">{{ item.title }}</span>
               </el-menu-item>

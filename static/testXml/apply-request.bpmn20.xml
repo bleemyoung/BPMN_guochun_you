@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.flowable.org/processdef">
+  <process id="apply-request" name="apply-request" isExecutable="true">
+    <startEvent id="startEvent1" />
+    <userTask id="teacher_decision" name="教师审批" flowable:candidateGroups="teacher" />
+    <exclusiveGateway id="apply_decision" />
+    <serviceTask id="email_call" name="邮件通知" flowable:class="com.processes.ag_bpmn_v1.callback_service.EmailCallDelegate" />
+    <serviceTask id="meg_call" name="短信通知" flowable:class="com.processes.ag_bpmn_v1.callback_service.MsgCallDelegate" />
+    <userTask id="person_received" name="个人收到通知并确认" flowable:candidateGroups="student" />
+    <endEvent id="sid-0060B1F5-71D9-4263-9958-0C4AC0679CF6" />
+    <endEvent id="sid-65A68B27-3824-4E11-825E-D04ADD103B1B" />
+    <sequenceFlow id="approve_task" name="apply your req" sourceRef="startEvent1" targetRef="teacher_decision" />
+    <sequenceFlow id="email_info" name="give you a emai to confirm" sourceRef="email_call" targetRef="person_received" />
+    <sequenceFlow id="meg_info" name="give you a meg call" sourceRef="meg_call" targetRef="sid-65A68B27-3824-4E11-825E-D04ADD103B1B" />
+    <sequenceFlow id="end_this_event" sourceRef="person_received" targetRef="sid-0060B1F5-71D9-4263-9958-0C4AC0679CF6" />
+    <sequenceFlow id="decision" sourceRef="teacher_decision" targetRef="apply_decision" />
+    <sequenceFlow id="req_success" name="通过" sourceRef="apply_decision" targetRef="email_call">
+      <conditionExpression xsi:type="tFormalExpression">${approved}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="req_failed" name="驳回" sourceRef="apply_decision" targetRef="meg_call">
+      <conditionExpression xsi:type="tFormalExpression">${!approved}</conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_apply-request">
+    <bpmndi:BPMNPlane id="BPMNPlane_apply-request" bpmnElement="apply-request">
+      <bpmndi:BPMNEdge id="BPMNEdge_req_failed" bpmnElement="req_failed">
+        <omgdi:waypoint x="591.312515553712" y="181.63672199170122" />
+        <omgdi:waypoint x="705" y="229.11764705882354" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_req_success" bpmnElement="req_success">
+        <omgdi:waypoint x="587.9341145833332" y="170.96527777777777" />
+        <omgdi:waypoint x="705" y="100.19261838440114" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_decision" bpmnElement="decision">
+        <omgdi:waypoint x="429.95000000000005" y="175" />
+        <omgdi:waypoint x="493.5" y="175" />
+        <omgdi:waypoint x="555.6746453900709" y="177.28994082840237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_end_this_event" bpmnElement="end_this_event">
+        <omgdi:waypoint x="1089.95" y="70" />
+        <omgdi:waypoint x="1140" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_meg_info" bpmnElement="meg_info">
+        <omgdi:waypoint x="804.9499999999999" y="250" />
+        <omgdi:waypoint x="1005" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_email_info" bpmnElement="email_info">
+        <omgdi:waypoint x="804.949999999983" y="70" />
+        <omgdi:waypoint x="989.9999999999905" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_approve_task" bpmnElement="approve_task">
+        <omgdi:waypoint x="129.9499986183554" y="178" />
+        <omgdi:waypoint x="230" y="178" />
+        <omgdi:waypoint x="230" y="175" />
+        <omgdi:waypoint x="330" y="175" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_startEvent1" bpmnElement="startEvent1">
+        <omgdc:Bounds x="100" y="163" width="30" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_teacher_decision" bpmnElement="teacher_decision">
+        <omgdc:Bounds x="330" y="135" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_apply_decision" bpmnElement="apply_decision" isMarkerVisible="true">
+        <omgdc:Bounds x="555" y="158" width="40" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_email_call" bpmnElement="email_call">
+        <omgdc:Bounds x="705" y="30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_meg_call" bpmnElement="meg_call">
+        <omgdc:Bounds x="705" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_person_received" bpmnElement="person_received">
+        <omgdc:Bounds x="990" y="30" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_sid-0060B1F5-71D9-4263-9958-0C4AC0679CF6" bpmnElement="sid-0060B1F5-71D9-4263-9958-0C4AC0679CF6">
+        <omgdc:Bounds x="1140" y="56" width="28" height="28" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_sid-65A68B27-3824-4E11-825E-D04ADD103B1B" bpmnElement="sid-65A68B27-3824-4E11-825E-D04ADD103B1B">
+        <omgdc:Bounds x="1005" y="236" width="28" height="28" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
