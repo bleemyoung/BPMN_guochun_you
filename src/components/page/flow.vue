@@ -146,6 +146,7 @@ export default {
         url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
       };
       console.log("123yxh，save");
+       console.log(config.url);
       //  console.log(api);
       console.log(config);
       // console.log("show xml:"+this.xml);

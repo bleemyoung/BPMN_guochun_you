@@ -31,6 +31,7 @@ module.exports = {
         },
 
         // Various Dev Server settings
+        // host: 'http://vj5ta7.natappfree.cc/', // can be overwritten by process.env.HOST - 192.168.66.204
         host: 'localhost', // can be overwritten by process.env.HOST - 192.168.66.204
         port: 8087, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
