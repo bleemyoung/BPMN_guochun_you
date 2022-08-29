@@ -61,7 +61,14 @@
         <!-- <el-button type="info"
         @click="handleClear"
         >清空文件列表</el-button> -->
+
+        <el-button 
+        @click="testbutton">
+        测试</el-button>
       </el-upload>
+      <div>
+        
+      </div>
     </div>
   </div>
 </template>
@@ -105,6 +112,7 @@ export default {
   },
   methods: {
     
+    
     // 上传xml/
     submitUpload() {
       // 
@@ -134,6 +142,28 @@ export default {
       console.log("clear files")
 // TODOs
     }, 
+    testbutton(){
+      console.log("124")
+      // var axios=require("axios")
+      // var config={
+      //   method:"get",
+      //   url:""
+      // }
+      // axios(config)
+      //   .then(function (response) {
+      //     console.log(JSON.stringify(response.data));
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
+
+      this.$axios
+        .get("http://localhost:8080/api/coffee/selectAllCoffee")
+        .then(res => {
+          console.log(res);
+        });
+      console.log("321end")
+    },
     // 对应保存模型
 
     save() {
@@ -143,13 +173,14 @@ export default {
       
        var config = {
         method: "post",
+        // url: "http://w5chdi.natappfree.cc/rice/addProcess?fileName=apply-request&content=" + this.xml,
         url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
       };
       console.log("123yxh，save");
        console.log(config.url);
       //  console.log(api);
-      console.log(config);
-      // console.log("show xml:"+this.xml);
+      // console.log(config);
+      console.log("show xml:"+this.xml);
 
       axios(config)
         .then(function (response) {
