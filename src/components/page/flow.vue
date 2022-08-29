@@ -119,6 +119,7 @@ export default {
       console.log("call submitUpload()");
       this.$refs.upload.submit();//
     },
+    // ok
     handleRemove(file, fileList) {
        console.log("handleRemove")
       console.log(file, fileList);
@@ -258,7 +259,9 @@ export default {
         that = this;
       var config = {
         method: "get",
-        url: "/apis/xml/getXmlFile?pName=apply-request",
+        // 通过修改pName来请求后端不同的文件
+        url: "/apis/xml/getXmlFile?pName=rice",
+        // url: "/apis/xml/getXmlFile?pName=apply-request",
       };
        console.log("123yxh");
       console.log(this.xml);
