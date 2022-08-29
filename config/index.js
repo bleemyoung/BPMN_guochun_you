@@ -10,21 +10,22 @@ module.exports = {
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
-        // proxyTable: {
-        proxy: {
+        proxyTable: {
+            // proxy: {
 
             '/apis': {
 
                 // 测试环境
 
-                target: 'http://w5chdi.natappfree.cc/', // 接口域名
+                // target: 'http://w5chdi.natappfree.cc/', // 接口域名
                 // target: 'http://119.45.103.23:8081/', // 接口域名
+                target: 'http://localhost:8080/', // 接口域名
 
                 changeOrigin: true, //是否跨域
 
                 pathRewrite: {
 
-                    '^/apis': '/apis' //需要rewrite重写的,
+                    '^/apis': '' //需要rewrite重写的,
                         // '^/apis': '/' //需要rewrite重写的,
 
                 }
