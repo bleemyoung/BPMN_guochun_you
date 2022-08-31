@@ -17,9 +17,9 @@ module.exports = {
 
                 // 测试环境
 
-                // target: 'http://w5chdi.natappfree.cc/', // 接口域名
+                target: 'http://tt4giv.natappfree.cc', // 接口域名
                 // target: 'http://119.45.103.23:8081/', // 接口域名
-                target: 'http://localhost:8080/', // 接口域名
+                // target: 'http://localhost:8080/', // 接口域名
 
                 changeOrigin: true, //是否跨域
 

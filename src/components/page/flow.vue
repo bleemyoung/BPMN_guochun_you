@@ -144,45 +144,12 @@ export default {
 // TODOs
     }, 
     testbutton(){
-      console.log("124")
-      // var axios=require("axios")
-      // var config={
-      //   method:"get",
-      //   url:""
-      // }
-      // axios(config)
-      //   .then(function (response) {
-      //     console.log(JSON.stringify(response.data));
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
-
-      this.$axios
-        .get("http://localhost:8080/api/coffee/selectAllCoffee")
-        .then(res => {
-          console.log(res);
-        });
-      console.log("321end")
-    },
-    // 对应保存模型
-
-    save() {
-      // { process: {...}, xml: '...', svg: '...' }
-    
-      var axios = require("axios");
-      
-       var config = {
-        method: "post",
-        // url: "http://w5chdi.natappfree.cc/rice/addProcess?fileName=apply-request&content=" + this.xml,
-        url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
-      };
-      console.log("123yxh，save");
-       console.log(config.url);
-      //  console.log(api);
-      // console.log(config);
-      console.log("show xml:"+this.xml);
-
+      console.log("start")
+      var axios=require("axios")
+      var config={
+        method:"get",
+        url:"/apis/test/rice"
+      }
       axios(config)
         .then(function (response) {
           console.log(JSON.stringify(response.data));
@@ -190,6 +157,50 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+
+      // this.$axios
+      //   .get("http://localhost:8080/api/coffee/selectAllCoffee")
+      //   .then(res => {
+      //     console.log(res);
+      //   });
+      console.log("end")
+      console.log("url:  "+config.url)
+    },
+    // 对应保存模型
+
+    save(data) {
+      // { process: {...}, xml: '...', svg: '...' }
+      console.log("save start");
+      var axios = require("axios");
+      
+      //  var config = {
+      //   method: "post",
+      //   // url: "http://w5chdi.natappfree.cc/rice/addProcess?fileName=apply-request&content=" + this.xml,
+      //   // url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
+        
+      // };
+      var config = {
+        method: "post",
+        url: "apis/rice/addProcess",
+        // url: "/apis/test/addProcess",
+        data:{
+          fileName:'test3',
+          content:data.xml
+        }
+      };
+      // console.log("show xml:"+this.xml);
+      console.log(data.xml);
+      // console.log(data.xml instanceof json)
+      axios(config)
+        .then(function (response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+        console.log("save end");
+   
     },
     deletePro(data) {
       // { process: {...}, xml: '...', svg: '...' }
