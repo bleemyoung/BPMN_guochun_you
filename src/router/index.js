@@ -93,9 +93,24 @@ export default new Router({
           meta: {
             title: '实例管理'
           }
+        },
+        {
+          path: '/model', 
+          component: ()=> import('../components/page/process/model'), 
+          meta: {
+            title: "流程模型"
+          }
+        }, 
+        {
+          path: '/user',
+          component: ()=> import('../components/page/process/userGroup'), 
+          meta: {
+            title: "用户分组"
+          }
         }
       ]
     },
+
     {
       path: '/login',
       component: () => import('../components/page/Login.vue')
