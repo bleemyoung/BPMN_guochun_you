@@ -22,7 +22,20 @@
        <button @click="deletePro"
             class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini">删除流程
        </button>
-
+ <!-- 删除流程对应的Dialog -->
+ <el-dialog title="删除流程" :visible.sync="delFormVisible">
+        <el-form :model="form">
+          <el-form-item label="请输入文件名" :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="delFormVisible= false">取 消</el-button>
+          <el-button type="primary" @click="delFormVisible= false"
+            >确 定</el-button
+          >
+        </div>
+      </el-dialog>
        <button @click="deletePro"
             class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini">查询流程
        </button>
@@ -37,6 +50,20 @@
         @save="save"
       />
     </div>
+    <!-- 保存流程对应的Dialog -->
+ <el-dialog title="保存流程" :visible.sync="saveFormVisible">
+        <el-form :model="form">
+          <el-form-item label="请输入文件名" :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="saveFormVisible= false">取 消</el-button>
+          <el-button type="primary" @click="saveFormVisible= false"
+            >确 定</el-button
+          >
+        </div>
+      </el-dialog>
     <div>
       
     </div>
@@ -121,6 +148,11 @@ export default {
         { name: "Music", id: "7" },
         { name: "Articles", id: "8" },
       ],
+      delFormVisible: false,
+      saveFormVisible: false,
+      form: {
+        name: "",
+      },
     };
   },
   methods: {
@@ -189,14 +221,13 @@ export default {
     save(data) {
       // { process: {...}, xml: '...', svg: '...' }
       console.log("save start");
+      console.log(this.saveFormVisible);
+      this.saveFormVisible=true
+      console.log(this.form.name)
+      // 声明周期？？？实现的时候顺序得清楚，以下的axios传数据得在dialog框确定的时候调用
       var axios = require("axios");
       
-      //  var config = {
-      //   method: "post",
-      //   // url: "http://w5chdi.natappfree.cc/rice/addProcess?fileName=apply-request&content=" + this.xml,
-      //   // url: "/apis/rice/addProcess?fileName=apply-request&content=" + this.xml,
-        
-      // };
+    
       var config = {
         method: "post",
         url: "apis/rice/addProcess",
@@ -223,7 +254,8 @@ export default {
     // 未对接 2022/8/31
     deletePro(data) {
       // { process: {...}, xml: '...', svg: '...' }
-      console.log(data.process)
+      console.log(this.delFormVisible);
+      this.delFormVisible=true
       var axios = require("axios");
       var config = {
         method: "post",
