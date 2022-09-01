@@ -23,9 +23,24 @@
       @click="deletePro"
       class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini"
     >
-      删除该备份
+      删除流程
     </button>
 
+    <!-- 删除流程对应的Dialog -->
+    <el-dialog title="删除流程" :visible.sync="delFormVisible">
+        <el-form :model="form">
+          <el-form-item label="请输入文件名" :label-width="formLabelWidth">
+            <el-input v-model="form.name" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="delFormVisible= false">取 消</el-button>
+          <el-button type="primary" @click="delFormVisible= false"
+            >确 定</el-button
+          >
+        </div>
+      </el-dialog>
+    <!-- 以下测试用  -->
     <div>
       <el-button @click="testbutton"> 测试2</el-button>
       <el-button @click="testRouter"> 测试跳转</el-button>
@@ -42,16 +57,8 @@
 
       <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
         <el-form :model="form">
-
-          <el-form-item label="活动名称" :label-width="formLabelWidth">
+          <el-form-item label="请输入文件名" :label-width="formLabelWidth">
             <el-input v-model="form.name" autocomplete="off"></el-input>
-          </el-form-item>
-
-          <el-form-item label="活动区域" :label-width="formLabelWidth">
-            <el-select v-model="form.region" placeholder="请选择活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -103,27 +110,27 @@ export default {
         { name: "Articles", id: "8" },
       ],
       dialogFormVisible: false,
+      delFormVisible: false,
+      saveFormVisible: false,
       form: {
         name: "",
-        region: "",
-        date1: "",
-        date2: "",
-        delivery: false,
-        type: [],
-        resource: "",
-        desc: "",
       },
       formLabelWidth: "120px",
     };
   },
   methods: {
-    callDialog(data){
-      console.log(this.data.dialogFormVisible)
-      
-      
+    callDialog(data) {
+      console.log(this.dialogFormVisible);
+      if (this.dialogFormVisible == true) {
+        this.dialogFormVisible = false;
+      } else {
+        this.dialogFormVisible = true;
+      }
     },
     testbutton() {
       console.log("start");
+      // console.log(this.dialogFormVisible);
+      // this.dialogFormVisible=true
       var axios = require("axios");
       var config = {
         method: "get",
@@ -136,12 +143,6 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
-
-      // this.$axios
-      //   .get("http://localhost:8080/api/coffee/selectAllCoffee")
-      //   .then(res => {
-      //     console.log(res);
-      //   });
       console.log("end");
       console.log("url:  " + config.url);
     },
@@ -157,8 +158,13 @@ export default {
     },
 
     // 未对接 2022/8/31
+    // this.form.name对应删除的流程，传给后端
     deletePro(data) {
       // { process: {...}, xml: '...', svg: '...' }
+
+      console.log(this.delFormVisible);
+      this.delFormVisible=true
+
       var axios = require("axios");
       var config = {
         method: "post",
@@ -248,7 +254,7 @@ export default {
           console.log(error);
         });
     },
-  }
+  },
 };
 </script>
 
