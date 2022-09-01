@@ -20,12 +20,9 @@
     </button>
     
        <button @click="deletePro"
-            class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini">删除流程
+            class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini">删除该备份
        </button>
 
-       <button @click="deletePro"
-            class="el-button el-button&#45;&#45;primary el-button&#45;&#45;mini">查询流程
-       </button>
     <div v-if="isShow">
       <bpmn-modeler
         ref="refNode"
@@ -69,25 +66,25 @@
 
         <el-button 
         @click="testbutton">
-        测试</el-button>
+        测试2</el-button>
         <el-button 
         @click="testRouter">
         测试跳转</el-button>
-
+        <el-button 
+        @click="testForm">
+        测试跳转testForm</el-button>
       </el-upload>
-      
-
       <div>
         
       </div>
     </div>
-    
   </div>
 </template>
 
 <script>
 import bpmnModeler from "workflow-bpmn-modeler";
 import axios from "axios";
+import testFormVue from "./testForm.vue";
 
 function loadXMLFromServer(data) {}
 
@@ -180,12 +177,15 @@ export default {
       console.log("url:  "+config.url)
     },
     testRouter(){
-      console.log("测试跳转,testRouter,跳转到flow2")
+      console.log("测试跳转,testRouter,跳转到flow")
       //  路径/home对应我在router目录下index.js中定义的path属性值
-      this.$router.push('/flow2');
+      this.$router.push('/flow');
     },
     // 对应保存模型
-
+    testForm(){
+      console.log("goto testForm")
+      this.$router.push('/testForm')
+    },
     save(data) {
       // { process: {...}, xml: '...', svg: '...' }
       console.log("save start");
@@ -223,7 +223,6 @@ export default {
     // 未对接 2022/8/31
     deletePro(data) {
       // { process: {...}, xml: '...', svg: '...' }
-      console.log(data.process)
       var axios = require("axios");
       var config = {
         method: "post",
@@ -248,7 +247,7 @@ export default {
     },
     // 未对接 2022/8/31
     /**
-     * nextNode对应button执行流程，对应url是rice/startOneProcess
+     * nextNode对应button执行流程
      */
     nextNode() {
       var axios = require("axios"),

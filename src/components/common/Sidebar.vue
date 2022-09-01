@@ -104,6 +104,11 @@ export default {
           icon: "iconfont icon-list",
         },
         {
+          title: "农事流程管理2",
+          path: "/flow2",
+          icon: "iconfont icon-list",
+        },
+        {
           title: "农事活动管理",
           path: "/active",
           icon: "iconfont icon-fangkuai",
