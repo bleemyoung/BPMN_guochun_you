@@ -82,7 +82,6 @@ export default {
           path: "/example",
           icon: "iconfont icon-menu",
         },
-
         // {
         //   title: "echarts图表",
         //   path: "echarts",
@@ -102,6 +101,16 @@ export default {
           title: "农事流程管理",
           path: "/flow",
           icon: "iconfont icon-list",
+          subItems: [
+            {
+              title: "流程模型",
+              path: "/model"
+            }, 
+            {
+              title: "用户分组", 
+              path: "/user"
+            }
+          ]
         },
         {
           title: "农事活动管理",
